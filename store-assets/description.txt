@@ -1,0 +1,104 @@
+Turn any web page, or just the parts of it you care about, into a clean, properly paginated PDF. In one click, with nothing uploaded, ever.
+
+exporter lives in your toolbar and your right-click menu. It uses Chrome's own print engine to create real documents: text you can select, search and copy, sharp vector graphics, and layouts that match the page. You don't get a blurry screenshot of whatever happened to be on screen.
+
+And everything happens on your computer. No account, no server, no tracking. The page you export never leaves your device.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WHY PEOPLE USE EXPORTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+★ The whole page, not just what's on screen
+Long articles, documentation, reports and receipts are exported from top to bottom and split across pages, the way a document should be.
+
+★ Export only the parts you pick
+Sidebars, cookie banners, navigation and ads get in the way of a good PDF. With exporter you point at what you want:
+  • Hover to highlight any element, and click to pick it.
+  • Pick one element or up to 30, such as a chart, a table, a recipe or a receipt.
+  • Each picked element gets its own page, in the order they appear on the page. Three charts on a dashboard become a tidy three-page PDF.
+  • Picked the wrong thing? Click it again to remove it. Picked a box that contains other picks? exporter merges them so nothing is printed twice.
+  • Use ↑ and ↓ to move the highlight to a bigger or smaller part of the page, Enter to export and Esc to cancel. The page is left exactly as it was.
+
+★ Real text, not pictures of text
+Because exporter uses Chrome's built-in print-to-PDF engine, text in your PDF stays selectable, searchable and copyable, and links, fonts and vector graphics stay sharp at any zoom. Your PDF reader can search it, screen readers can read it and search tools can index it.
+
+★ Waits until the page is finished loading
+Before exporting, exporter waits for web fonts to load, images to decode and lazy-loaded content to appear. You don't get blank image boxes or fallback fonts, and your scroll position is put back afterwards.
+
+★ Settings for how the PDF looks
+  • Paper size: A4, Letter, Legal, Tabloid, or Fit to content for short pages and single elements.
+  • Backgrounds: keep colours and images to match the screen, or drop them for a lighter, printer-friendly file.
+  • Print stylesheet: export what you see on screen, or use the site's own print layout when it has a good one.
+  • Save your preferred defaults once on the settings page. You can still change them for any single export in the popup.
+
+★ Sensible filenames
+Files are named after the page title and today's date, for example "Quarterly Report-2026-09-24.pdf". Chrome's normal Save dialog opens, so you choose the folder and can rename the file before saving. Page titles are cleaned first, so an odd title can't produce a broken or unsafe filename.
+
+★ Right where you need it
+Click the toolbar icon, or right-click any page and choose "Export page to PDF…" or "Export selected elements to PDF…".
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PRIVATE BY DESIGN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Many "save as PDF" tools upload the page to a server to convert it. exporter doesn't, and it can't:
+
+  • No network requests at all. It works with your Wi-Fi turned off.
+  • No account, no sign-in, no analytics, no crash reporting, no ads.
+  • The page content never leaves your computer and is never shared with anyone.
+  • Nothing about which pages you export, or when, is recorded anywhere.
+  • The only thing it stores is your own settings (paper size and background choices), kept on this device.
+
+That makes it safe to use on bank statements, invoices, medical portals, internal company tools and anything else you wouldn't paste into a website.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECURITY YOU DON'T HAVE TO TAKE ON TRUST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • It only acts when you ask. exporter never runs in the background on the pages you visit. It only reads a page after you click its icon or menu item, and only that one tab.
+  • Minimal permissions, each one used for exactly one job, as explained on this listing.
+  • No remote code. Everything it runs is inside the extension package that Google reviews, and nothing is fetched later.
+  • Page titles are treated as untrusted input and cleaned before they become filenames.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+GREAT FOR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • Saving articles, blog posts and documentation to read offline
+  • Keeping receipts, order confirmations, bookings and invoices
+  • Exporting charts and tables from dashboards for a report or slide deck
+  • Archiving pages for research, study notes or record-keeping
+  • Sending a clean copy of a web page to someone as an attachment
+  • Grabbing one recipe or a set of instructions without the rest of the page
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HOW TO USE IT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Whole page:
+  1. Click the exporter icon.
+  2. Click "Export page to PDF".
+  3. Choose where to save. Done.
+
+Only certain parts:
+  1. Click the exporter icon, then "Select elements…".
+  2. Hover and click each part you want. A badge on each one ("First", "Second"…) shows its page order.
+  3. Press Enter (or click Export) and save.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+GOOD TO KNOW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  • While a PDF is being created, Chrome shows a short notice that an extension is "debugging this browser". That notice appears because exporter is using Chrome's print engine. It goes away as soon as the export finishes.
+  • If Chrome's print engine isn't available (for example, while DevTools is open on that tab), exporter creates the PDF another way and tells you. In that case the text in the PDF is an image, so it can't be selected.
+  • Chrome doesn't allow any extension to read chrome:// pages, the Chrome Web Store or PDFs already open in Chrome's viewer. exporter tells you when this happens instead of saving an empty file.
+  • To export local files (file://), turn on "Allow access to file URLs" for exporter on the chrome://extensions page.
+
+
+Questions, ideas or bug reports: https://github.com/castiarena/exporter/issues

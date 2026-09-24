@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fixture Dashboard — exporter e2e</title>
+    <style>
+      /*
+        Deliberately shaped like a real site rather than a bare document: a
+        sticky header, nested flex and grid wrappers, a scroll container, tall
+        spacers, and a full-viewport body. Each of these has broken element
+        isolation at some point, so the fixture keeps them all.
+      */
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font: 15px/1.6 system-ui, sans-serif;
+        background: #f4f6fa;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        padding: 0 24px;
+        background: #1d2939;
+        color: #fff;
+        z-index: 10;
+      }
+      .shell { display: flex; gap: 24px; padding: 24px; min-height: 90vh; }
+      .sidebar { flex: 0 0 220px; background: #fff; border-radius: 12px; padding: 16px; }
+      .main { flex: 1 1 auto; display: grid; gap: 24px; align-content: start; }
+      .scroller { max-height: 260px; overflow-y: auto; background: #fff; border-radius: 12px; }
+      .scroller .filler { height: 1200px; padding: 16px; }
+      .card {
+        background: #fff;
+        border: 1px solid #dfe3ec;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 1px 3px rgba(16, 24, 40, 0.08);
+      }
+      .card h2 { margin: 0 0 8px; font-size: 17px; }
+      .card p { margin: 0; color: #475467; }
+      .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+      .metric { background: #eef4ff; border-radius: 8px; padding: 12px; text-align: center; }
+      .metric b { display: block; font-size: 20px; }
+      /*
+        Layout hazards, each behind its own class on <body>.
+
+        Every one of these once turned a single exported element into an element
+        plus a blank page, or swallowed the forced page break outright. They are
+        kept strictly separate because they cancel each other: a multi-column
+        ancestor halves the page height, which hides the blank page a full-height
+        wrapper would otherwise strand. Stacked into one layout they mask the very
+        bug this fixture exists to catch, so the tests apply one profile at a time
+        (plus one deliberate combination).
+      */
+
+      /* Space reserved around the element: a full-bleed section wrapper, a
+         decorative pseudo-element, and a margin on the element itself. */
+      body.hz-spacing .panel { min-height: 150vh; display: flex; align-items: center; }
+      body.hz-spacing .panel::after { content: ""; display: block; height: 400px; }
+      body.hz-spacing .panel > .card { margin-top: 300px; }
+
+      /* A multi-column ancestor absorbs forced page breaks entirely. */
+      body.hz-columns .main { column-count: 2; }
+
+      /* A forced break has no effect on an inline-level box — and the flex
+         parent is essential to the trap: CSS blockifies flex items, so the card
+         reports `block` on screen and only reverts to its authored inline-block
+         once isolation turns that parent into a plain block. */
+      body.hz-inline .panel { display: flex; align-items: center; min-height: 150vh; }
+      body.hz-inline .panel::after { content: none; }
+      body.hz-inline .card { display: inline-block; width: 90%; }
+
+      /* An out-of-flow element takes no part in pagination at all, so the
+         forced break after it lands on an empty box. */
+      body.hz-absolute .panel { position: relative; min-height: 150vh; }
+      body.hz-absolute .card { position: absolute; top: 40px; left: 0; right: 0; }
+
+      .spacer { height: 1400px; }
+      .site-footer { padding: 40px 24px; background: #1d2939; color: #98a2b3; }
+    </style>
+  </head>
+  <body>
+    <header class="site-header"><strong>Fixture Dashboard</strong></header>
+
+    <div class="shell">
+      <aside class="sidebar">
+        <p>Navigation that must not appear in any export.</p>
+      </aside>
+
+      <main class="main">
+        <section class="scroller">
+          <div class="filler">A tall scroll container, clipped on screen.</div>
+        </section>
+
+        <div class="panel">
+        <section id="card-one" class="card">
+          <h2>Revenue by region</h2>
+          <p>The first card an export picks. It is short enough to fit one page.</p>
+          <div class="metrics">
+            <div class="metric"><b>412</b>North</div>
+            <div class="metric"><b>388</b>South</div>
+            <div class="metric"><b>190</b>East</div>
+          </div>
+        </section>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="panel">
+        <section id="card-two" class="card">
+          <h2>Active accounts</h2>
+          <p>The second card an export picks. Also short enough to fit one page.</p>
+          <div class="metrics">
+            <div class="metric"><b>1.2k</b>Trial</div>
+            <div class="metric"><b>860</b>Paid</div>
+            <div class="metric"><b>44</b>Churned</div>
+          </div>
+        </section>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="panel">
+        <section id="card-three" class="card">
+          <h2>Support backlog</h2>
+          <p>A third card, so a three-element export can be checked too.</p>
+        </section>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">Footer that must not appear in any export.</footer>
+  </body>
+</html>

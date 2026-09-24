@@ -1,0 +1,50 @@
+{
+  "name": "exporter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Export the current page, or a selected element, to a clean PDF \u2014 entirely on-device.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "audit": "npm audit --omit=dev --audit-level=low",
+    "audit:all": "npm audit",
+    "build": "node scripts/build.mjs",
+    "build:test": "node scripts/build.mjs --test",
+    "check:node": "node scripts/require-node.mjs",
+    "icons": "node scripts/gen-icons.mjs",
+    "lint": "eslint .",
+    "package": "node scripts/package.mjs",
+    "prebuild": "npm run check:node && npm run vendor",
+    "prelint": "npm run check:node",
+    "prescreenshots": "npm run check:node",
+    "pretest": "npm run check:node",
+    "pretest:e2e": "npm run check:node",
+    "pretypecheck": "npm run check:node",
+    "screenshots": "node scripts/screenshots.mjs",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "vendor": "node scripts/vendor.mjs",
+    "verify:no-remote": "node scripts/verify-no-remote.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "1.61.1",
+    "@types/chrome": "0.2.9",
+    "@types/node": "22.20.1",
+    "eslint": "10.10.0",
+    "globals": "^17.12.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.70.0",
+    "vite": "8.2.2",
+    "vitest": "5.0.0"
+  },
+  "dependencies": {
+    "html2canvas": "1.4.1",
+    "jspdf": "4.2.1"
+  }
+}

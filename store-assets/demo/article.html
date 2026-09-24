@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Quarterly Garden Report</title>
+    <!--
+      Staging page for scripts/screenshots.mjs. Fictional, self-contained, and
+      deliberately busy — a header, a sidebar and a footer around the content —
+      so the element-picker shot shows why picking parts of a page is useful.
+    -->
+    <style>
+      :root { --ink: #1d2433; --muted: #5b6475; --line: #e3e7ee; --accent: #2f6f4f; --paper: #fbfaf7; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font: 17px/1.65 Georgia, "Iowan Old Style", serif; color: var(--ink); background: var(--paper); }
+      .site-header { display: flex; align-items: center; gap: 2rem; padding: 0.9rem 3rem; background: #fff; border-bottom: 1px solid var(--line); font: 600 15px/1 system-ui, sans-serif; }
+      .site-header .brand { color: var(--accent); font-size: 18px; letter-spacing: 0.02em; }
+      .site-header nav { display: flex; gap: 1.4rem; color: var(--muted); font-weight: 500; }
+      .layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 3rem; max-width: 1120px; margin: 0 auto; padding: 2.5rem 3rem; }
+      .kicker { font: 600 13px/1 system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+      h1 { font-size: 40px; line-height: 1.15; margin: 0.6rem 0 0.4rem; }
+      .byline { font: 14px/1.4 system-ui, sans-serif; color: var(--muted); margin-bottom: 1.6rem; }
+      .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 1.3rem 1.5rem; margin: 1.6rem 0; }
+      .card h2 { font: 600 17px/1.3 system-ui, sans-serif; margin: 0 0 1rem; }
+      .chart { display: flex; align-items: flex-end; gap: 14px; height: 150px; padding-bottom: 0.4rem; border-bottom: 1px solid var(--line); }
+      .bar { flex: 1; border-radius: 6px 6px 0 0; background: linear-gradient(#5fa67f, var(--accent)); }
+      .bar-labels { display: flex; gap: 14px; font: 12px/1 system-ui, sans-serif; color: var(--muted); margin-top: 0.5rem; }
+      .bar-labels span { flex: 1; text-align: center; }
+      table { width: 100%; border-collapse: collapse; font: 14px/1.4 system-ui, sans-serif; }
+      th, td { text-align: left; padding: 0.55rem 0.4rem; border-bottom: 1px solid var(--line); }
+      th { color: var(--muted); font-weight: 600; }
+      td.num { text-align: right; font-variant-numeric: tabular-nums; }
+      aside .panel { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.2rem; margin-bottom: 1.4rem; font: 14px/1.5 system-ui, sans-serif; }
+      aside h3 { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.7rem; }
+      aside ul { margin: 0; padding-left: 1.1rem; }
+      .newsletter { background: #eef5f0; }
+      .newsletter .btn { display: inline-block; margin-top: 0.6rem; padding: 0.45rem 0.9rem; border-radius: 6px; background: var(--accent); color: #fff; font-weight: 600; }
+      .site-footer { border-top: 1px solid var(--line); padding: 2rem 3rem; font: 13px/1.5 system-ui, sans-serif; color: var(--muted); text-align: center; }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <span class="brand">Allotment Almanac</span>
+      <nav><span>Seasons</span><span>Soil</span><span>Harvest logs</span><span>Tools</span></nav>
+    </header>
+
+    <div class="layout">
+      <main>
+        <div class="kicker">Harvest log · Summer</div>
+        <h1>Quarterly Garden Report</h1>
+        <div class="byline">Twelve raised beds, one very dry July, and what we would plant again.</div>
+
+        <p>
+          The summer quarter closed with the best tomato yield the plot has produced, despite
+          three weeks without meaningful rain. Mulching early and moving the drip lines under
+          the straw did most of the work; the rest came down to picking varieties that shrug off
+          heat rather than fighting it.
+        </p>
+
+        <section id="yield-chart" class="card">
+          <h2>Harvest by month (kg)</h2>
+          <div class="chart">
+            <div class="bar" style="height: 28%"></div>
+            <div class="bar" style="height: 46%"></div>
+            <div class="bar" style="height: 72%"></div>
+            <div class="bar" style="height: 100%"></div>
+            <div class="bar" style="height: 81%"></div>
+            <div class="bar" style="height: 55%"></div>
+          </div>
+          <div class="bar-labels">
+            <span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span>
+          </div>
+        </section>
+
+        <section id="yield-table" class="card">
+          <h2>Top performers</h2>
+          <table>
+            <thead><tr><th>Crop</th><th>Bed</th><th class="num">Yield (kg)</th><th class="num">vs. last year</th></tr></thead>
+            <tbody>
+              <tr><td>Cherry tomatoes</td><td>B3</td><td class="num">41.2</td><td class="num">+38%</td></tr>
+              <tr><td>Courgettes</td><td>A1</td><td class="num">33.8</td><td class="num">+12%</td></tr>
+              <tr><td>Runner beans</td><td>C2</td><td class="num">19.5</td><td class="num">+4%</td></tr>
+              <tr><td>Chard</td><td>A4</td><td class="num">11.0</td><td class="num">−6%</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <p>
+          Next quarter the beds rotate: brassicas move into what was tomato ground, and the
+          two weakest beds get a winter green manure instead of another crop.
+        </p>
+      </main>
+
+      <aside>
+        <div class="panel">
+          <h3>In this issue</h3>
+          <ul><li>Watering on a timer</li><li>Saving tomato seed</li><li>Autumn sowing plan</li></ul>
+        </div>
+        <div class="panel newsletter">
+          <h3>Monthly digest</h3>
+          The season's jobs, once a month.
+          <div><span class="btn">Subscribe</span></div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="site-footer">Allotment Almanac — a fictional demo page for exporter's store screenshots.</footer>
+  </body>
+</html>

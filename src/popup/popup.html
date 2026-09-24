@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>exporter</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <main class="panel">
+      <h1 class="heading" data-i18n="popupHeading">Export to PDF</h1>
+
+      <div class="actions">
+        <button id="export-page" class="btn btn-primary" type="button" data-i18n="exportPageButton">
+          Export page to PDF
+        </button>
+        <button id="export-element" class="btn" type="button" data-i18n="selectElementButton">
+          Select elements…
+        </button>
+      </div>
+
+      <fieldset class="options">
+        <legend class="sr-only" data-i18n="popupHeading">Export to PDF</legend>
+
+        <div class="row">
+          <label class="row-label" for="paper-size" data-i18n="paperSizeLabel">Paper size</label>
+          <select id="paper-size" class="select"></select>
+        </div>
+
+        <div class="row row-check">
+          <input id="print-background" class="check" type="checkbox" />
+          <label for="print-background" data-i18n="backgroundsLabel">
+            Include background colours and images
+          </label>
+        </div>
+
+        <div class="row row-check">
+          <input
+            id="use-page-print-styles"
+            class="check"
+            type="checkbox"
+            aria-describedby="print-styles-hint"
+          />
+          <label for="use-page-print-styles" data-i18n="printStylesLabel">
+            Use the page's own print stylesheet
+          </label>
+        </div>
+        <p id="print-styles-hint" class="hint" data-i18n="printStylesHint"></p>
+      </fieldset>
+
+      <p id="status" class="status" role="status" aria-live="polite" aria-atomic="true"></p>
+      <p id="engine-note" class="engine-note" hidden></p>
+
+      <div class="footer">
+        <button id="cancel" class="btn btn-quiet" type="button" hidden data-i18n="cancelButton">
+          Cancel
+        </button>
+        <button id="open-options" class="btn btn-quiet" type="button" data-i18n="openOptionsButton">
+          Defaults
+        </button>
+      </div>
+    </main>
+
+    <script type="module" src="./popup.ts"></script>
+  </body>
+</html>

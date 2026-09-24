@@ -1,0 +1,159 @@
+{
+  "extName": {
+    "message": "exporter",
+    "description": "Extension name shown in the Chrome Web Store and the toolbar."
+  },
+  "extDescription": {
+    "message": "Export the current page, or a selected element, to a clean PDF — entirely on-device.",
+    "description": "Extension description shown in the Chrome Web Store."
+  },
+
+  "popupHeading": { "message": "Export to PDF" },
+  "exportPageButton": { "message": "Export page to PDF" },
+  "selectElementButton": { "message": "Select elements…" },
+  "cancelButton": { "message": "Cancel" },
+  "openOptionsButton": { "message": "Defaults" },
+
+  "menuExportPage": { "message": "Export page to PDF…" },
+  "menuExportSelection": { "message": "Export selected elements to PDF…" },
+
+  "paperSizeLabel": { "message": "Paper size" },
+  "paperA4": { "message": "A4" },
+  "paperLetter": { "message": "Letter" },
+  "paperLegal": { "message": "Legal" },
+  "paperTabloid": { "message": "Tabloid" },
+  "paperAuto": { "message": "Fit to content" },
+
+  "backgroundsLabel": { "message": "Include background colours and images" },
+  "backgroundsHint": { "message": "Off produces a lighter, ink-friendly file." },
+  "printStylesLabel": { "message": "Use the page's own print stylesheet" },
+  "printStylesHint": {
+    "message": "Off exports what you see on screen. Turn this on if a site is designed to print well.",
+    "description": "Explains the print-stylesheet toggle in the popup and options page."
+  },
+
+  "statusIdle": { "message": "Ready." },
+  "statusPreparing": { "message": "Preparing the page…" },
+  "statusPicking": {
+    "message": "Click elements on the page — each becomes a page. Press Enter to export, Esc to cancel."
+  },
+  "statusRendering": { "message": "Rendering the PDF…" },
+  "statusRenderingFallback": { "message": "Rendering the PDF (fallback renderer)…" },
+  "statusSaving": { "message": "Saving…" },
+  "statusSuccess": {
+    "message": "Saved $FILENAME$.",
+    "placeholders": {
+      "filename": { "content": "$1", "example": "example-article-2026-09-09.pdf" }
+    }
+  },
+  "statusSuccessElements": {
+    "message": "Saved $FILENAME$ — $COUNT$ elements, each starting a new page.",
+    "description": "Shown after an element export. $COUNT$ is always 1 or more.",
+    "placeholders": {
+      "filename": { "content": "$1", "example": "example-article-2026-09-09.pdf" },
+      "count": { "content": "$2", "example": "3" }
+    }
+  },
+
+  "engineCdp": { "message": "Rendered with Chrome's print engine — text stays selectable." },
+  "engineCanvas": { "message": "Rendered with the fallback renderer — the PDF is an image, so its text is not selectable." },
+
+  "ordinal1": {
+    "message": "First",
+    "description": "Position an element will take in the exported PDF. The picker shows these instead of a tag or class name, so keep them short enough for a small on-page label."
+  },
+  "ordinal2": {
+    "message": "Second"
+  },
+  "ordinal3": {
+    "message": "Third"
+  },
+  "ordinal4": {
+    "message": "Fourth"
+  },
+  "ordinal5": {
+    "message": "Fifth"
+  },
+  "ordinal6": {
+    "message": "Sixth"
+  },
+  "ordinal7": {
+    "message": "Seventh"
+  },
+  "ordinal8": {
+    "message": "Eighth"
+  },
+  "ordinal9": {
+    "message": "Ninth"
+  },
+  "ordinal10": {
+    "message": "Tenth"
+  },
+  "ordinalNumbered": {
+    "message": "No. $NUMBER$",
+    "description": "Position past the tenth, where a written-out name stops being easier to read than a number.",
+    "placeholders": { "number": { "content": "$1", "example": "14" } }
+  },
+  "pickerSelectionFull": { "message": "Selection full" },
+  "pickerHint": {
+    "message": "Click elements to add them · ↑ ↓ widen or narrow · Esc to cancel"
+  },
+  "pickerHintSelected": {
+    "message": "$COUNT$ selected — each becomes a page · Enter to export · Esc to cancel",
+    "placeholders": { "count": { "content": "$1", "example": "3" } }
+  },
+  "pickerExportButton": { "message": "Export" },
+  "pickerNothingPicked": { "message": "Pick at least one element first." },
+  "pickerTooMany": {
+    "message": "That is the most elements one export can hold ($LIMIT$).",
+    "placeholders": { "limit": { "content": "$1", "example": "30" } }
+  },
+
+  "errorRestrictedPage": {
+    "message": "Chrome does not allow extensions to read this page, so it cannot be exported. Try it on an ordinary web page."
+  },
+  "errorNoActiveTab": { "message": "No active tab to export. Open a page and try again." },
+  "errorDebuggerUnavailable": {
+    "message": "Chrome's print engine is unavailable in this browser, and the fallback renderer could not be used either."
+  },
+  "errorDebuggerInUse": {
+    "message": "Another tool is already attached to this tab — usually DevTools. Close it and try again."
+  },
+  "errorPermissionDenied": {
+    "message": "exporter does not have permission to read this tab. Click the exporter icon on the page you want to export."
+  },
+  "errorFileAccessDenied": {
+    "message": "Chrome blocks extensions from reading local files. To export this page, open chrome://extensions, find exporter, and turn on \"Allow access to file URLs\"."
+  },
+  "errorPageNotCapturable": {
+    "message": "This page blocks capture, so it cannot be exported. PDFs already open in Chrome's viewer cannot be re-exported."
+  },
+  "errorPickerCancelled": { "message": "Selection cancelled." },
+  "errorNothingSelected": {
+    "message": "No elements were selected, so there was nothing to export."
+  },
+  "errorElementGone": {
+    "message": "The elements you selected are no longer on the page. Pick them again."
+  },
+  "errorRenderFailed": {
+    "message": "Rendering failed or took too long. Very long pages can time out — try exporting a section instead."
+  },
+  "errorEmptyResult": { "message": "The page produced an empty PDF. Nothing was saved." },
+  "errorTooLarge": {
+    "message": "The PDF is too large to save this way. Try a smaller paper size or export a section instead."
+  },
+  "errorDownloadFailed": { "message": "Chrome could not save the file." },
+  "errorDownloadCancelled": { "message": "Save cancelled. Nothing was written to disk." },
+  "errorUnknown": { "message": "Something went wrong and the export did not finish." },
+
+  "optionsHeading": { "message": "exporter defaults" },
+  "optionsIntro": {
+    "message": "These are the settings every new export starts from. You can still change them per export in the popup."
+  },
+  "optionsSaved": { "message": "Saved." },
+  "resetDefaultsButton": { "message": "Reset to defaults" },
+  "privacyHeading": { "message": "Privacy" },
+  "privacyBody": {
+    "message": "exporter works entirely on your device. It makes no network requests, has no account, and collects no data of any kind."
+  }
+}

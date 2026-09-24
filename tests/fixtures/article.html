@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fixture Article — exporter e2e</title>
+    <style>
+      body { font: 16px/1.6 system-ui, sans-serif; margin: 0 auto; max-width: 40em; padding: 2rem; }
+      .card { border: 1px solid #ccc; border-radius: 8px; padding: 1rem; background: #eef4ff; }
+      .filler { margin: 2rem 0; }
+    </style>
+  </head>
+  <body>
+    <h1>Fixture Article</h1>
+
+    <!-- Two sibling cards, far enough apart on screen that the picker can hit
+         each without the other being under the cursor. -->
+    <div id="target" class="card">
+      <h2>First exportable card</h2>
+      <p>This card is the element the single-selection test picks.</p>
+    </div>
+
+    <div class="filler">
+      <p>Body paragraph one, long enough to force a second page when printed.</p>
+      <p style="height: 900px">Tall block.</p>
+      <p>Body paragraph two, after the tall block.</p>
+    </div>
+
+    <div id="target-2" class="card">
+      <h2>Second exportable card</h2>
+      <p>The multi-selection test picks this one as well, making it page two.</p>
+    </div>
+  </body>
+</html>

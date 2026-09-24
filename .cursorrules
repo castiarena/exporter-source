@@ -1,0 +1,62 @@
+# Cursor Rules for exporter
+
+## Project Context
+
+This is a Chrome extension that exports web pages to PDF entirely on-device. Zero network requests — enforced at build time.
+
+## Critical Constraints
+
+### Security Rules (MUST NOT violate)
+
+These are ESLint errors, not warnings:
+
+- NO `eval()` or `new Function()`
+- NO `fetch()`, `XMLHttpRequest`, `WebSocket`, `EventSource`
+- NO network calls of any kind in first-party code
+- NO `console.log` (use `console.warn`, `console.error`, `console.debug`)
+
+### Architecture Rules
+
+- Content scripts (src/content/*) compile to IIFE — no imports allowed
+- All chrome.runtime messages go through src/shared/messaging.ts
+- Every onMessage handler MUST verify `sender.id === chrome.runtime.id`
+- src/export/filename.ts is a security boundary — sanitizes attacker-controlled input
+- No content_scripts in manifest — injection via chrome.scripting only
+
+## Code Style
+
+- TypeScript strict mode with `noUncheckedIndexedAccess`
+- Use `import type { X }` for type-only imports
+- Prefix unused variables with `_`
+- No explicit `any` types
+
+## File Patterns
+
+- `src/background/` — Service worker, orchestrates all exports
+- `src/content/` — Injected scripts (IIFE bundles, no imports)
+- `src/export/` — PDF generation (CDP primary, canvas fallback)
+- `src/shared/` — Types, messaging contract, utilities
+- `vendor/` — Committed third-party code (no CDN)
+- `scripts/` — Build tooling (Node environment, network allowed)
+- `tests/` — Unit (Vitest) and e2e (Playwright)
+
+## Commands
+
+```bash
+npm run build          # Build dist/
+npm test               # Unit tests
+npm run lint           # ESLint with security rules
+npm run typecheck      # tsc --noEmit
+npm run verify:no-remote  # Fail if dist/ has network paths
+```
+
+## When Adding Code
+
+1. Check if it introduces network calls — that's a hard block
+2. For content scripts: ensure no imports, must be self-contained
+3. For new error codes: add to types.ts AND _locales/en/messages.json
+4. For new messages: add to messaging.ts, add ResponseMap entry, verify sender.id
+
+## Node Version
+
+Node 22.13+ required. Use `nvm use` to activate.

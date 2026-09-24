@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npm run verify:no-remote
+      - run: npm run audit
+
+      - name: Check the tag matches manifest.json
+        run: |
+          manifest_version=$(node -p "require('./dist/manifest.json').version")
+          tag_version="${GITHUB_REF_NAME#v}"
+          if [ "$manifest_version" != "$tag_version" ]; then
+            echo "tag $tag_version does not match manifest version $manifest_version"
+            exit 1
+          fi
+
+      - run: npm run package
+
+      - name: Attach the package to the release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/*.zip
+          fail_on_unmatched_files: true
+
+      # Publishing to the Chrome Web Store stays manual and human-reviewed:
+      # 02-project-structure.md §4 calls it a one-way door, and it is.
+      - name: Next step
+        run: echo "Upload artifacts/*.zip to the Chrome Web Store developer console by hand."

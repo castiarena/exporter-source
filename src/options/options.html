@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>exporter — defaults</title>
+    <link rel="stylesheet" href="./options.css" />
+  </head>
+  <body>
+    <main class="page">
+      <h1 data-i18n="optionsHeading">exporter defaults</h1>
+      <p class="intro" data-i18n="optionsIntro"></p>
+
+      <form id="form" class="card">
+        <div class="row">
+          <label class="label" for="paper-size" data-i18n="paperSizeLabel">Paper size</label>
+          <select id="paper-size" class="select"></select>
+        </div>
+
+        <div class="row row-check">
+          <input id="print-background" class="check" type="checkbox" aria-describedby="bg-hint" />
+          <div>
+            <label for="print-background" data-i18n="backgroundsLabel"></label>
+            <p id="bg-hint" class="hint" data-i18n="backgroundsHint"></p>
+          </div>
+        </div>
+
+        <div class="row row-check">
+          <input
+            id="use-page-print-styles"
+            class="check"
+            type="checkbox"
+            aria-describedby="ps-hint"
+          />
+          <div>
+            <label for="use-page-print-styles" data-i18n="printStylesLabel"></label>
+            <p id="ps-hint" class="hint" data-i18n="printStylesHint"></p>
+          </div>
+        </div>
+
+        <div class="foot">
+          <button id="reset" class="btn" type="button" data-i18n="resetDefaultsButton">
+            Reset to defaults
+          </button>
+          <p id="saved" class="saved" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <section class="card privacy">
+        <h2 data-i18n="privacyHeading">Privacy</h2>
+        <p data-i18n="privacyBody"></p>
+      </section>
+    </main>
+
+    <script type="module" src="./options.ts"></script>
+  </body>
+</html>

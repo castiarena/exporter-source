@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # Kept in step with .nvmrc and the "engines" field in package.json.
+          node-version-file: .nvmrc
+          cache: npm
+
+      # ci, not install: the committed lockfile is the only source of versions.
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      # 01-requirements.md §4: no remote code, no network calls, ever.
+      - name: Verify no remote code in the built extension
+        run: npm run verify:no-remote
+
+      - name: Verify vendored libraries match the lockfile
+        run: |
+          npm run vendor
+          git diff --exit-code -- vendor/ \
+            || (echo "vendor/ is stale — run 'npm run vendor' and commit the result" && exit 1)
+
+      # Two tiers. The code that actually ships inside the extension is held to
+      # zero advisories at any severity; the build/test toolchain is reported so
+      # it stays visible, but a devDependency advisory does not block a PR.
+      - name: Audit shipped dependencies
+        run: npm run audit
+
+      - name: Audit the full dependency tree (report only)
+        run: npm run audit:all
+        continue-on-error: true
